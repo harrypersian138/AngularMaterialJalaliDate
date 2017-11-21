@@ -14,7 +14,7 @@ export class AdapterChekerComponent implements OnInit {
   startDate = jmoment('2017-01-01', 'YYYY-MM-DD');
   minDate = jmoment('2017-10-02', 'YYYY-MM-DD');
   maxDate = jmoment('1396-07-29', 'jYYYY-jMM-jDD');
-   jsonDate = '2017-10-19T12:19:48.817';
+  jsonDate = '2017-10-19T12:19:48.817';
   weeksInJalali = [
     { enName: 'Saturday', faName: 'شنبه', faAbbr: 'ش', order: 0 },
     { enName: 'Sunday', faName: 'یکشنبه', faAbbr: 'ی', order: 1 },
@@ -45,7 +45,7 @@ export class AdapterChekerComponent implements OnInit {
     return day !== 5 && day !== 4;
   }
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.adapter = new JalaliMomentDateAdapter();
