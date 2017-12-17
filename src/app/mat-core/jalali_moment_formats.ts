@@ -11,6 +11,6 @@ export const JALALI_MOMENT_FORMATS: MatDateFormats = {
         dateA11yLabel: 'jYYYY/jMM/jDD',
         monthYearA11yLabel: 'jYYYY jMMMM'
     }
-};
+}; 
 
 // export const MOMENT_FORMATS: InjectionToken<MOMENT_FORMATS>;

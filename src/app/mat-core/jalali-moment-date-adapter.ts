@@ -79,7 +79,7 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
                 return jmoment.localeData('fa').weekdays().slice(0);
             case 'short':
                 return jmoment.localeData('fa').weekdaysShort().slice(0);
-            case 'narrow':
+            case 'narrow': 
                 return ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'];
             // return jmoment.localeData('fa').weekdaysMin().slice(0);
         }

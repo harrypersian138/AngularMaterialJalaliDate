@@ -8,7 +8,7 @@ import {
   MatCardModule,
   MatCheckboxModule,
   MatChipsModule,
-  MatTableModule,
+  MatTableModule, 
   MatDatepickerModule,
   MatDialogModule,
   MatExpansionModule,

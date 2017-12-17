@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
     AppComponent,
     AdapterChekerComponent
   ],
-  imports: [
+  imports: [ 
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,

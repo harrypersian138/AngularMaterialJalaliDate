@@ -9,7 +9,7 @@ import { MatDatepickerInputEvent } from '@angular/material';
   styleUrls: ['./adapter-cheker.component.css']
 })
 export class AdapterChekerComponent implements OnInit {
-  adapter: JalaliMomentDateAdapter;
+  adapter: JalaliMomentDateAdapter; 
 
   startDate = jmoment('2017-01-01', 'YYYY-MM-DD');
   minDate = jmoment('2017-10-02', 'YYYY-MM-DD');
