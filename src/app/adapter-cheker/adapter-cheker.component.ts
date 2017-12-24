@@ -1,6 +1,6 @@
 import { JalaliMomentDateAdapter } from './../mat-core/jalali-moment-date-adapter';
 import { Component, OnInit } from '@angular/core';
-import * as jmoment from 'jalali-moment';
+import jmoment from 'jalali-moment';
 import { MatDatepickerInputEvent } from '@angular/material';
 
 @Component({

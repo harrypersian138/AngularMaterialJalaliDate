@@ -1,4 +1,4 @@
-import * as jmoment from 'jalali-moment';
+import jmoment from 'jalali-moment';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
 import { Inject, Injectable, Optional } from '@angular/core';
 
