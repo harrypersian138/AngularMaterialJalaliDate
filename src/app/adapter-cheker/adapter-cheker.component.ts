@@ -1,7 +1,8 @@
 import { JalaliMomentDateAdapter } from './../mat-core/jalali-moment-date-adapter';
 import { Component, OnInit } from '@angular/core';
-import jmoment from 'jalali-moment';
+import * as jmoment from 'jalali-moment';
 import { MatDatepickerInputEvent } from '@angular/material';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-adapter-cheker',
@@ -11,10 +12,14 @@ import { MatDatepickerInputEvent } from '@angular/material';
 export class AdapterChekerComponent implements OnInit {
   adapter: JalaliMomentDateAdapter; 
 
+  
   startDate = jmoment('2017-01-01', 'YYYY-MM-DD');
   minDate = jmoment('2017-10-02', 'YYYY-MM-DD');
   maxDate = jmoment('1396-07-29', 'jYYYY-jMM-jDD');
-  jsonDate = '2017-10-19T12:19:48.817';
+  jsonDate = '2018-01-08T20:21:29.4674496';
+  // jsonMomentDate = jmoment(this.jsonDate, 'YYYY-MM-DD');
+  dateControl = new FormControl(this.jsonDate);
+  
   weeksInJalali = [
     { enName: 'Saturday', faName: 'شنبه', faAbbr: 'ش', order: 0 },
     { enName: 'Sunday', faName: 'یکشنبه', faAbbr: 'ی', order: 1 },

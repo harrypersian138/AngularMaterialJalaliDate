@@ -1,4 +1,4 @@
-import jmoment from 'jalali-moment';
+import * as  jmoment from 'jalali-moment';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
 import { Inject, Injectable, Optional } from '@angular/core';
 
@@ -218,7 +218,8 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
             if (!value) {
                 return null;
             }
-            date = jmoment(value, jmoment.ISO_8601).locale('fa');
+            // date = jmoment(value, jmoment.ISO_8601).locale('fa');
+            date = jmoment(value).locale('fa');
         }
         if (date && this.isValid(date)) {
             return date;
