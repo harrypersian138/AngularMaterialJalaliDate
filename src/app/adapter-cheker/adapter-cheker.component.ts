@@ -1,6 +1,6 @@
 import { JalaliMomentDateAdapter } from './../mat-core/jalali-moment-date-adapter';
 import { Component, OnInit } from '@angular/core';
-import * as jmoment from 'jalali-moment';
+import * as moment from 'jalali-moment';
 import { MatDatepickerInputEvent } from '@angular/material';
 import { FormControl } from '@angular/forms';
 
@@ -11,11 +11,15 @@ import { FormControl } from '@angular/forms';
 })
 export class AdapterChekerComponent implements OnInit {
   adapter: JalaliMomentDateAdapter; 
-
   
-  startDate = jmoment('2017-01-01', 'YYYY-MM-DD');
-  minDate = jmoment('2017-10-02', 'YYYY-MM-DD');
-  maxDate = jmoment('1396-07-29', 'jYYYY-jMM-jDD');
+  startDate = moment('2017-01-01', 'YYYY-MM-DD');
+  
+  // minDate = moment('2017-10-02', 'YYYY-MM-DD');
+  minDate = moment.from('2017-10-02', 'en');
+
+  // maxDate = moment('1396-07-29', 'jYYYY-jMM-jDD');
+  maxDate = moment.from('1396-07-29', 'fa');
+
   jsonDate = '2018-01-08T20:21:29.4674496';
   // jsonMomentDate = jmoment(this.jsonDate, 'YYYY-MM-DD');
   dateControl = new FormControl(this.jsonDate);
@@ -44,7 +48,7 @@ export class AdapterChekerComponent implements OnInit {
     { faName: 'بهمن', order: 10 },
     { faName: 'اسفند', order: 11 }
   ];
-  myFilter = (d: jmoment.Moment): boolean => {
+  myFilter = (d: moment.Moment): boolean => {
     const day: number = d.day();
     // Prevent Thursday and Friday from being selected.
     return day !== 5 && day !== 4;
@@ -56,11 +60,11 @@ export class AdapterChekerComponent implements OnInit {
     this.adapter = new JalaliMomentDateAdapter();
   }
 
-  onInput(event: MatDatepickerInputEvent<jmoment.Moment>) {
+  onInput(event: MatDatepickerInputEvent<moment.Moment>) {
     console.log('onInput: ', event.value);
   }
-  onChange(event: MatDatepickerInputEvent<jmoment.Moment>) {
-    const x = jmoment(event.value).format('jYYYY/jMM/jDD');
+  onChange(event: MatDatepickerInputEvent<moment.Moment>) {
+    const x = moment(event.value).format('jYYYY/jMM/jDD');
     console.log('onChange: ', x);
   }
 }

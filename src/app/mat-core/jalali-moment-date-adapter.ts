@@ -1,4 +1,4 @@
-import * as  jmoment from 'jalali-moment';
+import * as  moment from 'jalali-moment';
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material';
 import { Inject, Injectable, Optional } from '@angular/core';
 
@@ -10,7 +10,7 @@ function range<T>(length: number, valueFunction: (index: number) => T): T[] {
     }
     return valuesArray;
 }
-export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
+export class JalaliMomentDateAdapter extends DateAdapter<moment.Moment> {
 
     constructor() {
         // @Optional() @Inject(MAT_DATE_LOCALE) dateLocale: string
@@ -23,28 +23,28 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
     /**
        * returns year in jalali calendar system.
        */
-    getYear(date: jmoment.Moment): number {
+    getYear(date: moment.Moment): number {
         return this.clone(date).jYear();
     }
 
     /**
        * returns month in jalali calendar system.
        */
-    getMonth(date: jmoment.Moment): number {
+    getMonth(date: moment.Moment): number {
         return this.clone(date).jMonth();
     }
 
     /**
        * returns day in jalali calendar system.
        */
-    getDate(date: jmoment.Moment): number {
+    getDate(date: moment.Moment): number {
         return this.clone(date).jDate();
     }
 
     /**
        * returns Day Of Week in jalali calendar system.
        */
-    getDayOfWeek(date: jmoment.Moment): number {
+    getDayOfWeek(date: moment.Moment): number {
         return this.clone(date).day();
     }
 
@@ -56,9 +56,9 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
         switch (style) {
             case 'long':
             case 'short':
-                return jmoment.localeData('fa').jMonths().slice(0);
+                return moment.localeData('fa').jMonths().slice(0);
             case 'narrow':
-                return jmoment.localeData('fa').jMonthsShort().slice(0);
+                return moment.localeData('fa').jMonthsShort().slice(0);
         }
     }
 
@@ -76,9 +76,9 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
     getDayOfWeekNames(style: 'long' | 'short' | 'narrow'): string[] {
         switch (style) {
             case 'long':
-                return jmoment.localeData('fa').weekdays().slice(0);
+                return moment.localeData('fa').weekdays().slice(0);
             case 'short':
-                return jmoment.localeData('fa').weekdaysShort().slice(0);
+                return moment.localeData('fa').weekdaysShort().slice(0);
             case 'narrow': 
                 return ['ی', 'د', 'س', 'چ', 'پ', 'ج', 'ش'];
             // return jmoment.localeData('fa').weekdaysMin().slice(0);
@@ -88,7 +88,7 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
     /**
        * returns year in jalali calendar system.
        */
-    getYearName(date: jmoment.Moment): string {
+    getYearName(date: moment.Moment): string {
         return this.clone(date).jYear().toString();
     }
 
@@ -97,17 +97,18 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
        * first day of week is saturday, شنبه
        */
     getFirstDayOfWeek(): number {
-        return jmoment.localeData('fa').firstDayOfWeek();
+        return moment.localeData('fa').firstDayOfWeek();
         // return 6;
     }
 
     /**
        * returns Number of Days In Month in jalali calendar system.
        */
-    getNumDaysInMonth(date: jmoment.Moment): number {
+    getNumDaysInMonth(date: moment.Moment): number {
         return this.clone(date).jDaysInMonth();
     }
-    clone(date: jmoment.Moment): jmoment.Moment {
+
+    clone(date: moment.Moment): moment.Moment {
         return date.clone().locale('fa');
     }
 
@@ -117,7 +118,7 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
        * @param month zero indexed jalali month
        * @param date jalali day
        */
-    createDate(year: number, month: number, date: number): jmoment.Moment {
+    createDate(year: number, month: number, date: number): moment.Moment {
         if (month < 0 || month > 11) {
             throw Error(
                 `Invalid month index "${month}". Month index has to be between 0 and 11.`
@@ -126,7 +127,7 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
         if (date < 1) {
             throw Error(`Invalid date "${date}". Date has to be greater than 0.`);
         }
-        const result = jmoment()
+        const result = moment()
             .jYear(year).jMonth(month).jDate(date)
             .hours(0).minutes(0).seconds(0).milliseconds(0)
             .locale('fa');
@@ -140,32 +141,35 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
         return result;
     }
 
-    today(): jmoment.Moment {
-        return jmoment().locale('fa');
+    today(): moment.Moment {
+        return moment().locale('fa');
     }
 
-    parse(value: any, parseFormat: string | string[]): jmoment.Moment | null {
+    parse(value: any, parseFormat: string | string[]): moment.Moment | null {
         if (value && typeof value === 'string') {
-            const result = jmoment(value, parseFormat, 'fa');
+            const result = moment(value, parseFormat, 'fa');
             return result;
         }
-        return value ? jmoment(value).locale('fa') : null;
+        return value ? moment(value).locale('fa') : null;
     }
 
-    format(date: jmoment.Moment, displayFormat: string): string {
+    format(date: moment.Moment, displayFormat: string): string {
         date = this.clone(date);
         if (!this.isValid(date)) {
             throw Error('JalaliMomentDateAdapter: Cannot format invalid date.');
         }
         return date.format(displayFormat);
     }
-    addCalendarYears(date: jmoment.Moment, years: number): jmoment.Moment {
+
+    addCalendarYears(date: moment.Moment, years: number): moment.Moment {
         return this.clone(date).add(years, 'jYear');
     }
-    addCalendarMonths(date: jmoment.Moment, months: number): jmoment.Moment {
+
+    addCalendarMonths(date: moment.Moment, months: number): moment.Moment {
         return this.clone(date).add(months, 'jmonth');
     }
-    addCalendarDays(date: jmoment.Moment, days: number): jmoment.Moment {
+
+    addCalendarDays(date: moment.Moment, days: number): moment.Moment {
         return this.clone(date).add(days, 'jDay');
     }
 
@@ -176,19 +180,21 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
    *@param date The date to get the ISO date string for.
    *@returns The ISO date string date string.
    */
-    toIso8601(date: jmoment.Moment): string {
+    toIso8601(date: moment.Moment): string {
         return this.clone(date).format();
     }
 
     isDateInstance(obj: any): boolean {
-        return jmoment.isMoment(obj);
+        return moment.isMoment(obj);
     }
-    isValid(date: jmoment.Moment): boolean {
+
+    isValid(date: moment.Moment): boolean {
         return this.clone(date).isValid();
         // return date.isValid();
     }
-    invalid(): jmoment.Moment {
-        return jmoment.invalid();
+    
+    invalid(): moment.Moment {
+        return moment.invalid();
     }
 
     /**
@@ -209,17 +215,17 @@ export class JalaliMomentDateAdapter extends DateAdapter<jmoment.Moment> {
     * @returns The deserialized date object, either a valid date, null if the value can be
     *     deserialized into a null date (e.g. the empty string), or an invalid date.
     */
-    deserialize(value: any): jmoment.Moment | null {
+    deserialize(value: any): moment.Moment | null {
         let date;
         if (value instanceof Date) {
-            date = jmoment(value);
+            date = moment(value);
         }
         if (typeof value === 'string') {
             if (!value) {
                 return null;
             }
             // date = jmoment(value, jmoment.ISO_8601).locale('fa');
-            date = jmoment(value).locale('fa');
+            date = moment(value).locale('fa');
         }
         if (date && this.isValid(date)) {
             return date;
